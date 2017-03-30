@@ -1,11 +1,5 @@
 version: '3'
 services:
-  # app:
-  #   build: .
-  #   ports:
-  #    - "3000:3000"
-  #   volumes:
-  #    - .:/code
   nginx:
     build: nginx
     depends_on:
@@ -13,6 +7,14 @@ services:
       - app
     ports:
       - "8000:80"
+
+  app:
+    build: app
+    ports:
+     - "3000:3000"
+    volumes:
+     - ./app:/usr/src/app
+     - /usr/src/app/node_modules
 
   api:
     build: api
