@@ -6,9 +6,20 @@ services:
   #    - "3000:3000"
   #   volumes:
   #    - .:/code
+  nginx:
+    build: nginx
+    depends_on:
+      - api
+      - app
+    ports:
+      - "8000:80"
+
   api:
     build: api
     ports:
-     - "3001:3001"
+      - "3001:3001"
     volumes:
-     - ./api:/usr/src/app
+      - ./api:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      PORT: 3001
