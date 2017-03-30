@@ -8,7 +8,7 @@ const PORT = process.env.PORT
 const app = express()
 const schema = require('./schemas')
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({
+app.use('/', bodyParser.json(), graphqlExpress({
   schema
 }))
 
